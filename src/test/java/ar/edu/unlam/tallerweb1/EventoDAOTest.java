@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,9 +32,9 @@ public class EventoDAOTest {
 	public void testCrearYListarEventos() {
 		
 		// INICIALIZACION
-		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento","01/01/2001","21:00","23:00");
-		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento","01/01/2001","21:00","23:00");
-		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento","01/01/2001","21:00","23:00");
+		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento",new Date(),"21:00","23:00");
+		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento",new Date(),"21:00","23:00");
+		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento",new Date(),"21:00","23:00");
 		
 		// OPERACION
 		eventoDao.crearEvento(evento1);
@@ -52,9 +54,9 @@ public class EventoDAOTest {
 	public void testBuscarEvento() {
 		
 		// INICIALIZACION
-		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento","01/01/2001","21:00","23:00");
-		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento","01/01/2001","21:00","23:00");
-		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento","01/01/2001","21:00","23:00");
+		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento",new Date(),"21:00","23:00");
+		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento",new Date(),"21:00","23:00");
+		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento",new Date(),"21:00","23:00");
 		
 		eventoDao.crearEvento(evento1);
 		eventoDao.crearEvento(evento2);
@@ -79,9 +81,9 @@ public class EventoDAOTest {
 	public void testBuscarEventoXId() {
 		
 		// INICIALIZACION
-		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento","01/01/2001","21:00","23:00");
-		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento","01/01/2001","21:00","23:00");
-		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento","01/01/2001","21:00","23:00");
+		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento",new Date(),"21:00","23:00");
+		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento",new Date(),"21:00","23:00");
+		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento",new Date(),"21:00","23:00");
 		
 		eventoDao.crearEvento(evento1);
 		eventoDao.crearEvento(evento2);
@@ -102,9 +104,9 @@ public class EventoDAOTest {
 	public void testActualizarEvento() {
 		
 		// INICIALIZACION
-		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento","01/01/2001","21:00","23:00");
-		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento","01/01/2001","21:00","23:00");
-		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento","01/01/2001","21:00","23:00");
+		Evento evento1 = new Evento(1L,"PrimerEvento", "Este es el primer evento",new Date(),"21:00","23:00");
+		Evento evento2 = new Evento(2L,"SegundoEvento", "Este es el segundo evento",new Date(),"21:00","23:00");
+		Evento evento3 = new Evento(3L,"TercerEvento", "Este es el tercer evento",new Date(),"21:00","23:00");
 		
 		eventoDao.crearEvento(evento1);
 		eventoDao.crearEvento(evento2);

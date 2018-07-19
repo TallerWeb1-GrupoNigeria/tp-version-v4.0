@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,6 +49,48 @@ public class ControladorHome {
 	public ModelAndView inicio(@ModelAttribute("evento") Evento evento) {
 		
 		ModelMap model = new ModelMap();
+		 List<Evento> listadoEventos = servicioEvento.listarTodosEventosService();
+		  	
+			Iterator<Evento> cargaEstados = listadoEventos.listIterator();
+			while (cargaEstados.hasNext()) {
+				Evento miEvento = cargaEstados.next();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				//String fecha = sdf.format(new Date()); 
+				//SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	     		String fechaActualString = sdf.format(new Date());
+	     		String fechaEventoString = sdf.format(miEvento.getFecha());
+	     		Date fechaActual = new Date();
+				SimpleDateFormat sdfHora = new SimpleDateFormat("HH");
+				String horaActual = sdfHora.format(new Date());
+				int horaActualInt = Integer.parseInt(horaActual);
+				//String horaEvento = miEvento.getHoraInicio();
+				//char[] horaInicio = miEvento.getHoraInicio().toCharArray();
+				String[] horaOMinuto = miEvento.getHoraInicio().split(":");
+				int horaInicialEvento = Integer.parseInt(horaOMinuto[0]);
+				String[] horaOMinutoFin = miEvento.getHoraFin().split(":");
+				int horaFinalEvento = Integer.parseInt(horaOMinutoFin[0]);
+				
+	     		if(fechaActualString.equals(fechaEventoString)) {
+	     			for (int i=horaInicialEvento; i<horaFinalEvento ; i++ ) {
+	     				if(horaActualInt==i) {
+							miEvento.setEstado("en curso");
+						}else {
+							miEvento.setEstado("Hoy");
+						}
+	     			}
+	     			
+	     		}else if (miEvento.getFecha().before(fechaActual) ) {
+					miEvento.setEstado("evento caducado");
+				}else if(miEvento.getFecha().after(fechaActual)) {
+					miEvento.setEstado("evento proximo");
+				}else {
+					miEvento.setEstado("fecha invalida");
+				}
+				servicioEvento.actualizarEventoService(miEvento);	
+			}
+			//List<Evento>  listadoEventos2 = servicioEvento.listarTodosLosEventosEstadoEnProximosService();
+			//List<Evento> listadoEventos1 = servicioEvento.listarTodosLosEventosEstadoCaducadoService();
+			 // List<Evento> listadoEventos3 = servicioEvento.listarTodosLosEventosEstadoEnProcesoService();
 		
 	//	model.put("keySelectPrestaciones", servicioPrestacion.listarPrestacionService());
 		
